@@ -31,8 +31,10 @@ services:
       timeout: 10s
       retries: 5
     volumes:
-      - db-data:/var/lib/mongodb/data
+      - tachyon-db-data:/data/db
+      - tachyon-db-data-config:/data/configdb
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
 
 volumes:
-  db-data:
+  tachyon-db-data:
+  tachyon-db-data-config:
