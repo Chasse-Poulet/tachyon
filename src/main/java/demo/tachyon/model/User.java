@@ -20,7 +20,7 @@ public class User implements UserDetails {
     private String id;
 
     private String email;
-    private String username;
+    private String displayName;
     private String password;
     private String fullName;
     private Set<String> roles;
@@ -28,7 +28,7 @@ public class User implements UserDetails {
     public static User from(RegisterUserDTO dto) {
         User u = new User();
         u.setEmail(dto.getEmail());
-        u.setUsername(dto.getUsername());
+        u.setDisplayName(dto.getDisplayName());
         u.setPassword(dto.getPassword());
         u.setFullName(dto.getFullName());
         return u;
@@ -39,5 +39,10 @@ public class User implements UserDetails {
         return roles.stream()
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toSet());
+    }
+
+    @Override
+    public String getUsername() {
+        return displayName;
     }
 }

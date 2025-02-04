@@ -36,11 +36,11 @@ public class AuthenticationService {
     public User authenticate(LoginUserDTO input) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        input.getUsername(),
+                        input.getDisplayName(),
                         input.getPassword()
                 )
         );
 
-        return userRepository.findByUsername(input.getUsername()).orElseThrow();
+        return userRepository.findByDisplayName(input.getDisplayName()).orElseThrow();
     }
 }
